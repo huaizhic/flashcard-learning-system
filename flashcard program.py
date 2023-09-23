@@ -51,7 +51,8 @@ def flashcardsystem(database):
         question = databaselist[randomcounter][0]
         answer = databaselist[randomcounter][1]
         # print(answer)
-        print("What is (", question, ") in malay? (type in lowercase)")
+        print("What is (", question,
+              ") in malay? (type in lowercase. to skip, just press Enter. To terminate, ctrl+C)")
         userinput = input()
 
         if userinput == answer:
