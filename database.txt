@@ -71,4 +71,5 @@
  "duck":"itik",
  "girl":"perempuan",
  "add":"tambah",
- "or":"atau"}
+ "or":"atau",
+ "hi":"hai"}

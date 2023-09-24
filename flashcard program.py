@@ -1,5 +1,6 @@
 import random
 import json
+import os
 
 
 def prGreen(skk): print("\033[92m {}\033[00m" .format(skk))
@@ -53,21 +54,68 @@ def flashcardsystem(database):
         answer = databaselist[randomcounter][1]
         # print(answer)
         print("What is (", question,
-              ") in malay? (type in lowercase. to skip, just press Enter. To terminate, ctrl+C)")
+              ") in malay? (type in lowercase. to skip, just press Enter. For menu, key in 'exit'. To terminate, ctrl+C)")
         userinput = input()
 
         if userinput == answer:
             prGreen("Correct!")
             print(" It is (", answer, ")")
+        elif userinput == "exit":
+            menu()
         else:
             prRed("Wrong!")
             print(" It is (", answer, ")")
 
 
+def addtoDatabase():
+    print("English word:")
+    userEnglishInput = input()
+    print("Malay Equivalent:")
+    userMalayInput = input()
+
+    with open('database.txt', 'a') as f:
+        # f.write("\b") - backspace cmd doesn't work here
+        # move cursor one byte (character) backwards
+        # f.seek(-1, io.SEEK_END) this parameter combi does not work due to some reason
+        f.seek(0, os.SEEK_END)  # unable to backspace due to this code
+        # f.seek(f.tell() - 1, os.SEEK_SET)
+        f.write(",\n")  # overwrite existing "}"
+        f.write(" ")
+        f.write("\"")
+        f.write(userEnglishInput)
+        f.write("\"")
+        f.write(":")
+        f.write("\"")
+        f.write(userMalayInput)
+        f.write("\"")
+        f.write("}")
+
+
+def menu():
+    print("=========================")
+    print("""-------------------------
+flashcard learning system
+-------------------------""")
+    print("Select the following options:")
+    print("1: Do the questions")
+    print("2: Add to vocublary database (beta, have to manually delete the duplicate '}'s at the end of each new addition)")
+    print("=========================")
+    userInput = input()
+    match(userInput):
+        case "1":
+            database = readingsystem()
+            flashcardsystem(database)
+        case "2":
+            addtoDatabase()
+            menu()
+        case _:
+            print("error! please select the appropriate options")
+            menu()
+
+
 def main():
-    database = readingsystem()
-    print("To skip question, just press Enter")
-    flashcardsystem(database)
+
+    menu()
 
 
 main()
