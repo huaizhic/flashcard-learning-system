@@ -94,7 +94,8 @@ def addtoDatabase():
                 f.write(userMalayInput)
                 f.write("\"")
                 f.write("}")
-            print("Addition successful! Remember to delete the } at the end")
+            prGreen("Addition successful!")
+            print("Remember to delete the } at the end")
 
 
 def menu():
@@ -105,6 +106,7 @@ flashcard learning system
     print("Select the following options:")
     print("1: Do the questions")
     print("2: Add to vocublary database (beta, have to manually delete the duplicate '}'s at the end of each new addition to follow JSON format)")
+    print("3: Search word (coming soon)")
     print("=========================")
     userInput = input()
     match(userInput):
@@ -116,7 +118,8 @@ flashcard learning system
                 addtoDatabase()
 
         case _:
-            print("error! please select the appropriate options")
+            prRed("Error!")
+            print("please select the appropriate options")
             menu()
 
 
