@@ -6,11 +6,12 @@ import os
 def prGreen(skk): print("\033[92m {}\033[00m" .format(skk))
 def prRed(skk): print("\033[91m {}\033[00m" .format(skk))
 def prCyan(skk): print("\033[96m {}\033[00m" .format(skk))
+def prYellow(skk): print("\033[93m {}\033[00m" .format(skk))
 
 
 def readingsystem1():
-    with open('databaseWk1-7.txt') as f:
-        print("Reading databaseWk1-7.txt...")
+    with open('databaseUnit3-8.txt') as f:
+        print("Reading databaseUnit3-8.txt...")
         data = f.read()
 
     database = json.loads(data)
@@ -20,7 +21,7 @@ def readingsystem1():
 
 
 def readingsystem2():
-    with open('databaseWk8-13.txt') as f:
+    with open('databaseUnit9-20.txt') as f:
         print("Reading databaseWk8-13.txt...")
         data = f.read()
 
@@ -64,18 +65,25 @@ def flashcardsystem(database):
         question = databaselist[randomcounter][0]
         answer = databaselist[randomcounter][1]
         # print(answer)
-        print("What is (", question,
-              ") in malay? (type in lowercase. to skip, just press Enter. For menu, key in '0'. To terminate, ctrl+C)")
+        """print("What is (", question,
+              ") in malay? (type in lowercase. to skip, just press Enter. For menu, key in '0'. To terminate, ctrl+C)")"""
+        # questionInColour = prCyan(question)
+        print("What is this in malay? (type in lowercase. to skip, just press Enter. For menu, key in '0'. To terminate, ctrl+C)")
+        prCyan(question)
         userinput = input()
 
         if userinput == answer:
             prGreen("Correct!")
-            print(" It is (", answer, ")")
+            # print(" It is (", answer, ")")
+            """ print("Answer: ")
+            prYellow(answer)"""
         elif userinput == "0":
             menu()
         else:
             prRed("Wrong!")
-            print(" It is (", answer, ")")
+            # print(" It is (", answer, ")")
+            print("Answer: ")
+            prYellow(answer)
 
 
 def addtoDatabase1():
@@ -89,15 +97,15 @@ def addtoDatabase1():
         if userMalayInput == "0":
             menu()
         else:
-            with open('databaseWk1-7.txt') as f:
+            with open('databaseUnit3-8.txt') as f:
                 data = f.read()                # string
-            dataDict = json.loads(data)    # from string to dictionary
+            dataDict = json.loads(data)    # from string/JSON to dictionary
             dataDict.update({userEnglishInput: userMalayInput})
-            # from dictionary to JSON
+            # from dictionary to string/JSON
             dataJSON = json.dumps(dataDict, indent=2)
-            dataString = str(dataJSON)  # from JSON to string
-            with open('databaseWk1-7.txt', "w") as f:
-                f.write(dataString)
+            # dataString = str(dataJSON)  # from JSON to string
+            with open('databaseUnit3-8.txt', "w") as f:
+                f.write(dataJSON)
             f.close()
             prGreen("Addition successful!")
             # print("Remember to delete the } at the end")
@@ -114,15 +122,15 @@ def addtoDatabase2():
         if userMalayInput == "0":
             menu()
         else:
-            with open('databaseWk8-13.txt') as f:
-                data = f.read()                # exact string
-            dataDict = json.loads(data)    # from string to dictionary
+            with open('databaseUnit9-20.txt') as f:
+                data = f.read()                # exact string extraction
+            dataDict = json.loads(data)    # from string/JSON to dictionary
             dataDict.update({userEnglishInput: userMalayInput})
-            # from dictionary to JSON
+            # from dictionary to string/JSON
             dataJSON = json.dumps(dataDict, indent=2)
-            dataString = str(dataJSON)  # from JSON to string
-            with open('databaseWk8-13.txt', "w") as f:
-                f.write(dataString)
+            # dataString = str(dataJSON)  # from JSON to string
+            with open('databaseUnit9-20.txt', "w") as f:
+                f.write(dataJSON)
             f.close()
             prGreen("Addition successful!")
             # print("Remember to delete the } at the end")
@@ -162,14 +170,18 @@ def menu():
 flashcard learning system
 -------------------------""")
     print("Select the following options:")
-    print("1: Do the questions (Wk 1-7)")
-    print("2: Do the questions (Wk 8-13)")
-    print("3: Add to vocublary database (Wk1-7)")
-    print("4: Add to vocublary database (Wk8-13)")
-    print("5: Search word (coming soon)")
+    print("1: Do the questions (Unit 3-8)")
+    print("2: Do the questions (Unit 9-20)")
+    print("3: Add to vocublary database (Unit 3-8)")
+    print("4: Add to vocublary database (Unit 9-20)")
+    print("5: Do the questions (Sentence based) (coming soon)")
+    print("6: Search word (coming soon)")
+    print("0: Terminate Program")
     print("=========================")
     userInput = input()
     match(userInput):
+        case "0":
+            print("Program terminated. Thank you for trying!")
         case "1":
             database = readingsystem1()
             flashcardsystem(database)

@@ -1,6 +1,0 @@
-{
-  "to (person)": "kepada",
-  "from (person)": "daripada",
-  "comparison": "daripada",
-  "by (eg: dimasak ____ ibu saya)": "oleh"
-}
