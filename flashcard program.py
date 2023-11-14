@@ -21,7 +21,7 @@ def readingsystem1():
 
 
 def readingsystem2():
-    with open('databaseUnit9-20.txt') as f:
+    with open('databaseUnit9-19.txt') as f:
         print("Reading databaseWk8-13.txt...")
         data = f.read()
 
@@ -122,14 +122,14 @@ def addtoDatabase2():
         if userMalayInput == "0":
             menu()
         else:
-            with open('databaseUnit9-20.txt') as f:
+            with open('databaseUnit9-19.txt') as f:
                 data = f.read()                # exact string extraction
             dataDict = json.loads(data)    # from string/JSON to dictionary
             dataDict.update({userEnglishInput: userMalayInput})
             # from dictionary to string/JSON
             dataJSON = json.dumps(dataDict, indent=2)
             # dataString = str(dataJSON)  # from JSON to string
-            with open('databaseUnit9-20.txt', "w") as f:
+            with open('databaseUnit9-19.txt', "w") as f:
                 f.write(dataJSON)
             f.close()
             prGreen("Addition successful!")
@@ -171,12 +171,13 @@ flashcard learning system
 -------------------------""")
     print("Select the following options:")
     print("1: Do the questions (Unit 3-8)")
-    print("2: Do the questions (Unit 9-20)")
+    print("2: Do the questions (Unit 9-19)")
     print("3: Add to vocublary database (Unit 3-8)")
-    print("4: Add to vocublary database (Unit 9-20)")
+    print("4: Add to vocublary database (Unit 9-19)")
     print("5: Do the questions (Sentence based) (coming soon)")
     print("6: Search word (coming soon)")
-    print("0: Terminate Program")
+    print("7: Edit word (coming soon)")
+    print("0: Terminate Program (still buggy)")
     print("=========================")
     userInput = input()
     match(userInput):
